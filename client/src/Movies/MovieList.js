@@ -1,6 +1,14 @@
 import React from 'react';
 
+//Step 2c - import the features required
+import { Link, useRouteMatch } from 'react-router-dom';
+
 export default function MovieList(props) {
+//Step 2d - declare some props!
+const { movies } = props;
+
+
+
   return (
     <div className="movie-list">
       {props.movies.map(movie => (
