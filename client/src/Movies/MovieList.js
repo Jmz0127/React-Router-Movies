@@ -5,13 +5,14 @@ import { Link, useRouteMatch } from 'react-router-dom';
 
 export default function MovieList(props) {
 //Step 2d - declare some props!
-const { movies } = props;
+const { movies } = props.movie;
+const { id } = useRouteMatch;
 
 
 
   return (
     <div className="movie-list">
-      {props.movies.map(movie => (
+      {props.movie.map(movie => (
         <MovieDetails key={movie.id} movie={movie} />
       ))}
     </div>
