@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import SavedList from './Movies/SavedList';
+
 
 //Step 2a - add the Route feature since you are adding two routes
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 //Step 2b - import the necessary component items for the routes
 import MovieList from './Movies/MovieList';
 import Movie from './Movies/Movie';
+import SavedList from './Movies/SavedList';
 
 export default function App () {
   const [saved, setSaved] = useState([]); // Stretch: the ids of "saved" movies
@@ -21,6 +22,7 @@ export default function App () {
         .then(response => {
           // Study this response with a breakpoint or log statements
           // and set the response data as the 'movieList' slice of state
+          // ALWAYS CONSOLE.LOG(RESPONSE) FIRST AND INSPECT CONSOLE!! THATS HOW WE KNOW TO USE .data BELOW!!
           setMovieList(response.data)
         })
         .catch(error => {
@@ -36,18 +38,22 @@ export default function App () {
 
   return (
     <div>
-
       <SavedList list={[ /* This is stretch */]} />
 
 
-      <Link to='/'>MoviesList</Link>
-      <Link to='/movies'>Movies</Link>
-      {/* <div>Replace this Div with your Routes</div> */}
-      <Route path="/movies/:movieid">
-        <Movie movies={Movie} />
+  
+
+
+      {/* Two routes below, first going to MovieList.js - one route for / that loads the MovieList component. This component will need the movies injected into it via props.
+      
+      and the other going to Movie.js - one route that will take an id parameter after/movies/ (ex: /movies/2, /movies/3 where the id is dynamic). This route should load the Movie component.
+      */}
+  
+      <Route exact path="/">
+        <MovieList movies={movieList} />
       </Route>
-      <Route path="/">
-        <MovieList movie={movieList}/>
+      <Route path="/movies/:id">
+        <Movie />
       </Route>
 
     </div>
