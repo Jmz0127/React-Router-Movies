@@ -23,6 +23,7 @@ export default function App () {
           // Study this response with a breakpoint or log statements
           // and set the response data as the 'movieList' slice of state
           // ALWAYS CONSOLE.LOG(RESPONSE) FIRST AND INSPECT CONSOLE!! THATS HOW WE KNOW TO USE .data BELOW!!
+          console.log(response)
           setMovieList(response.data)
         })
         .catch(error => {
